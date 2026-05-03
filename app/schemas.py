@@ -37,6 +37,7 @@ class DailyReviewRequest(BaseModel):
     trade_date: date | None = Field(default=None, description="缺省时使用 Asia/Shanghai 当前日期")
     refresh: bool = Field(default=False, description="是否强制重新抓取并生成总结")
     include_operations: bool = Field(default=True, description="是否纳入当日股票操作记录")
+    async_mode: bool = Field(default=False, description="是否后台生成复盘，避免线上长请求超时")
 
 
 class DailyReviewRead(BaseModel):
@@ -48,6 +49,7 @@ class DailyReviewRead(BaseModel):
     summary: dict[str, Any]
     model_name: str
     prompt_version: str
+    status: str
     created_at: datetime
     updated_at: datetime
 

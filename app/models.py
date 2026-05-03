@@ -49,5 +49,6 @@ class DailyReview(TimestampMixin, Base):
     summary: Mapped[dict] = mapped_column(JSONType, nullable=False)
     model_name: Mapped[str] = mapped_column(String(80), nullable=False)
     prompt_version: Mapped[str] = mapped_column(String(40), nullable=False)
+    status: Mapped[str] = mapped_column(String(30), nullable=False, default="completed", server_default="completed")
 
     __table_args__ = (UniqueConstraint("trade_date", name="uq_daily_reviews_trade_date"),)
