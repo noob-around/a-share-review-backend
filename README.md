@@ -68,3 +68,32 @@ pytest
 
 - `APP_TOKEN`
 - `DEEPSEEK_API_KEY`
+
+## Android App
+
+安卓前端位于 `android/`，是原生 Android Java 工程。首次构建前，在 `android/local.properties` 写入：
+
+```properties
+sdk.dir=C:/Users/24604/AppData/Local/Android/Sdk
+API_BASE_URL=https://a-share-review-api.onrender.com
+APP_TOKEN=<你的 APP_TOKEN>
+```
+
+构建调试 APK：
+
+```powershell
+cd android
+.\gradlew.bat :app:assembleDebug
+```
+
+产物路径：
+
+```text
+android/app/build/outputs/apk/debug/app-debug.apk
+```
+
+App 功能：
+
+- 获取目前股市信息，并调用后端后台生成复盘。
+- 展示大盘判断、涨停/跌停家数、上涨/下跌家数、热点板块。
+- 下载 Excel 到系统 Downloads，并在下载完成后尝试直接打开。

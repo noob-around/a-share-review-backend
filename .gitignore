@@ -8,3 +8,7 @@ local.db
 *.sqlite3
 .coverage
 htmlcov/
+android/local.properties
+android/.gradle/
+android/build/
+android/app/build/

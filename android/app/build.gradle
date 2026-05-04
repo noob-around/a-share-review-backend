@@ -1,0 +1,31 @@
+plugins {
+    id "com.android.application"
+}
+
+def localProps = new Properties()
+def localPropsFile = rootProject.file("local.properties")
+if (localPropsFile.exists()) {
+    localPropsFile.withInputStream { localProps.load(it) }
+}
+
+android {
+    namespace "com.stockreview.app"
+    compileSdk 36
+
+    buildFeatures {
+        buildConfig true
+    }
+
+    defaultConfig {
+        applicationId "com.stockreview.app"
+        minSdk 26
+        targetSdk 36
+        versionCode 1
+        versionName "1.0.0"
+
+        def apiBaseUrl = localProps.getProperty("API_BASE_URL", "https://a-share-review-api.onrender.com")
+        def appToken = localProps.getProperty("APP_TOKEN", "")
+        buildConfigField "String", "API_BASE_URL", "\"${apiBaseUrl}\""
+        buildConfigField "String", "APP_TOKEN", "\"${appToken}\""
+    }
+}
